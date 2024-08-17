@@ -22,13 +22,17 @@
 USE AdventureWorksDW2014
 
 SELECT 
-	SalesOrderNumber,
-	OrderDate,
-	OrderQuantity,
-	TotalProductCost,
-	SalesAmount
+	FactInternetSales.SalesOrderNumber,
+	FactInternetSales.OrderDate,
+	FactInternetSales.OrderQuantity,
+	FactInternetSales.TotalProductCost,
+	FactInternetSales.SalesAmount,
+	DimProductCategory.EnglishProductCategoryName
 FROM 
 	FactInternetSales
-
-
-
+INNER JOIN DimProduct
+	ON	FactInternetSales.ProductKey = DimProduct.ProductKey
+		INNER JOIN DimProductSubcategory
+			ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubcategoryKey
+				INNER JOIN DimProductCategory
+					ON DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey

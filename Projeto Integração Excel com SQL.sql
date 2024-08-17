@@ -21,6 +21,9 @@
 
 USE AdventureWorksDW2014
 
+GO
+CREATE OR ALTER VIEW vw_VENDAS_INTERNET AS  
+
 SELECT 
 	FactInternetSales.SalesOrderNumber AS 'NÚMERO DO PEDIDO',
 	FactInternetSales.OrderDate AS 'DATA PEDIDO',
@@ -43,3 +46,5 @@ INNER JOIN DimCustomer
 INNER JOIN DimSalesTerritory
 	ON FactInternetSales.SalesTerritoryKey = DimSalesTerritory.SalesTerritoryKey
 WHERE YEAR(OrderDate) = 2013
+
+GO

@@ -22,12 +22,14 @@
 USE AdventureWorksDW2014
 
 SELECT 
-	FactInternetSales.SalesOrderNumber,
-	FactInternetSales.OrderDate,
-	FactInternetSales.OrderQuantity,
-	FactInternetSales.TotalProductCost,
-	FactInternetSales.SalesAmount,
-	DimProductCategory.EnglishProductCategoryName
+	FactInternetSales.SalesOrderNumber AS 'NÚMERO DO PEDIDO',
+	FactInternetSales.OrderDate AS 'DATA PEDIDO',
+	DimCustomer.FirstName + ' ' + LastName AS 'NOME CLIENTE',
+	DimProductCategory.EnglishProductCategoryName AS 'CATEGORIA DO PRODUTO',
+	FactInternetSales.OrderQuantity AS 'QTD. VENDIDA',
+	FactInternetSales.TotalProductCost AS 'CUSTO VENDA',
+	FactInternetSales.SalesAmount AS 'RECEITA VENDA'
+	
 FROM 
 	FactInternetSales
 INNER JOIN DimProduct
@@ -36,3 +38,8 @@ INNER JOIN DimProduct
 			ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubcategoryKey
 				INNER JOIN DimProductCategory
 					ON DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
+INNER JOIN DimCustomer
+	ON FactInternetSales.CustomerKey = DimCustomer.CustomerKey
+INNER JOIN DimSalesTerritory
+	ON FactInternetSales.SalesTerritoryKey = DimSalesTerritory.SalesTerritoryKey
+WHERE YEAR(OrderDate) = 2013

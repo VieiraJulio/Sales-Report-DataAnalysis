@@ -28,6 +28,7 @@ SELECT
 	FactInternetSales.SalesOrderNumber AS 'NÚMERO DO PEDIDO',
 	FactInternetSales.OrderDate AS 'DATA PEDIDO',
 	DimCustomer.FirstName + ' ' + LastName AS 'NOME CLIENTE',
+	DimCustomer.Gender AS 'GÊNERO',
 	DimProductCategory.EnglishProductCategoryName AS 'CATEGORIA DO PRODUTO',
 	FactInternetSales.OrderQuantity AS 'QTD. VENDIDA',
 	FactInternetSales.TotalProductCost AS 'CUSTO VENDA',

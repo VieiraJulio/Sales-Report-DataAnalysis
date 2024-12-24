@@ -25,8 +25,3 @@ Este projeto focou em delegar o processamento pesado para o SQL Server, mantendo
 
  - Baixar o Arquivo em Excel.
  - Baixar o Arquivo em SQL
-   
- - 
-
-
-   
